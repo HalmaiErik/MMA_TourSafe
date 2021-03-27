@@ -1,0 +1,14 @@
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div>Covid test result</div>
+    <div>
+       <input id="positive" type="radio" value="1" name="test" formControlName="test">
+       <label class="custom-control-label" for="positive">Positive</label>
+    </div>
+ 
+    <div>
+       <input id="negative" type="radio" value="0" name="test" formControlName="test">
+       <label class="custom-control-label" for="negative">Negative</label>
+    </div>
+    
+    <button type="submit">Submit</button>
+ </form><!-- Form ends -->

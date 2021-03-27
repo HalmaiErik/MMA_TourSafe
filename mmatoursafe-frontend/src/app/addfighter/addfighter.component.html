@@ -1,0 +1,43 @@
+<div class="container h-100">
+    <div class="row h-100">
+        <div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
+            <div class="d-table-cell align-middle">
+
+                <div class="text-center mt-4">
+                    <h1 class="h2">Get started</h1>
+                    <p class="lead">
+                        Sign up to enter tournament.
+                    </p>
+                </div>
+
+                <div *ngIf="success" class="alert alert-info" role="alert">
+                    You have registered succesfully
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="m-sm-4">
+                            <form #addForm="ngForm" (ngSubmit)="onAddFighter(addForm)">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input class="form-control form-control-lg" type="text" ngModel name="name" id="name" placeholder="Enter your name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="age">Age</label>
+                                    <input class="form-control form-control-lg" type="number" ngModel name="age" id="age" placeholder="Enter your age" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="weightClass">Weight class</label>
+                                    <input class="form-control form-control-lg" type="text" ngModel name="weightClass" id="weightClass" placeholder="Enter your weight class" required>
+                                </div>
+                                <div class="text-center mt-3">
+                                    <button [disabled]="addForm.invalid" id="add-fighter-form" type="submit" class="btn btn-lg btn-primary">Sign up</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
