@@ -10,19 +10,20 @@
           </li>
        </ul>
     </div>
-  </nav>
+</nav>
   <div class="container" id="main-container">
   <div class="row">
-    <div *ngFor="let tournament of tournaments" class="col-md-6 col-xl-3">
-       <div class="card m-b-30">
-          <div class="card-body row">
+   <div *ngFor="let tournament of tournaments" class="col-md-6 col-xl-3">
+      <div class="card m-b-30">
+         <div class="card-body row">
              <div class="card-title align-self-center mb-0">
                 <h5>{{tournament?.name}}</h5>
              </div>
-          </div>
+         </div>
           <ul class="list-group list-group-flush">
              <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Start: {{tournament?.startDate}}</li>
              <li class="list-group-item"><i class="fa fa-phone float-right"></i>End: {{tournament?.endDate}}</li>
+             <li class="list-group-item"><i class="fa fa-phone float-right"></i>Schedule: {{tournament?.schedule}}</li>
           </ul>
           <div class="card-body">
             <div class="float-right btn-group btn-group-sm">
@@ -37,7 +38,7 @@
 
   <!-- Add Tournament Modal -->
 <div class="modal fade" id="addTournamentModal" tabindex="-1" role="dialog" aria-labelledby="addTournamentModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+   <div class="modal-dialog" role="document">
       <div class="modal-content">
          <div class="modal-header">
             <h5 class="modal-title" id="addTournamentModalLabel">Add Tournament</h5>
@@ -56,9 +57,16 @@
                <input type="text" ngModel name="startDate" class="form-control" id="startDate" placeholder="Start Date" required>
             </div>
             <div class="form-group">
-                <label for="endDate">Start date</label>
+                <label for="endDate">End date</label>
                 <input type="text" ngModel name="endDate" class="form-control" id="endDate" placeholder="End Date" required>
-             </div>
+            </div>
+            <div class="form-group">
+               <label for="schedule">Match scheduling</label>
+               <select ngModel name="schedule" class="form-control" id="schedule" required>
+                  <option selected>Weekly</option>
+                  <option>Monthly</option>
+               </select>
+            </div>
             <div class="modal-footer">
                <button type="button" id="add-tournament-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
                <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
@@ -67,7 +75,7 @@
          </div>
       </div>
     </div>
-    </div>
+</div>
 
     <!-- Notification for no tournament-->
 <div *ngIf="tournaments?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
@@ -75,4 +83,4 @@
      <h4 class="alert-heading">NO TOURNAMENTS!</h4>
      <p>No Tournaments were found.</p>
    </div>
-   </div>
+</div>

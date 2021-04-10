@@ -12,7 +12,6 @@ import { FighterService } from '../services/fighter.service';
 export class AddfighterComponent implements OnInit {
   idTournament: number;
   idFighter: number;
-  success: boolean
 
   constructor(private fighterService: FighterService, private route: ActivatedRoute, private router: Router) { }
 
@@ -30,7 +29,6 @@ export class AddfighterComponent implements OnInit {
         console.log(response);
         this.idFighter = response.id;
         this.goCovidTest();
-        this.success = true;
       },
     );
   }

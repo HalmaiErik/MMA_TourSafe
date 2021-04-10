@@ -15,30 +15,30 @@ export class TournamentService {
   constructor(private http: HttpClient) { }
 
   public getTournaments(): Observable<Tournament[]> {
-    return this.http.get<Tournament[]>(`${this.apiServerUrl}`);
+    return this.http.get<Tournament[]>(`${this.apiServerUrl}/tournaments`);
   }
 
   public addTournament(tournament: Tournament): Observable<Tournament> {
-    return this.http.post<Tournament>(`${this.apiServerUrl}/add`, tournament);
+    return this.http.post<Tournament>(`${this.apiServerUrl}/tournaments`, tournament);
   }
 
-  public addMatch(match: Match): Observable<Match> {
-    return this.http.post<Match>(`${this.apiServerUrl}/tournament/match/add`, match);
+  public addMatches(matches: Match[], tournamentId: number): Observable<Match[]> {
+    return this.http.post<Match[]>(`${this.apiServerUrl}/matches/tournament/${tournamentId}`, matches);
   }
 
   public getTournament(tournamentId: number): Observable<Tournament> {
-    return this.http.get<Tournament>(`${this.apiServerUrl}/tournament/${tournamentId}`);
+    return this.http.get<Tournament>(`${this.apiServerUrl}/tournaments/${tournamentId}`);
   }
 
   public getTournamentNegativeFighters(tournamentId: number): Observable<Fighter[]> {
-    return this.http.get<Fighter[]>(`${this.apiServerUrl}/tournament/${tournamentId}/negativefighters`);
+    return this.http.get<Fighter[]>(`${this.apiServerUrl}/fighters/negative/tournament/${tournamentId}`);
   }
 
   public getTournamentPositiveFighters(tournamentId: number): Observable<Fighter[]> {
-    return this.http.get<Fighter[]>(`${this.apiServerUrl}/tournament/${tournamentId}/positivefighters`);
+    return this.http.get<Fighter[]>(`${this.apiServerUrl}/fighters/positive/tournament/${tournamentId}`);
   }
 
   public getTournamentMatches(tournamentId: number): Observable<Match[]> {
-    return this.http.get<Match[]>(`${this.apiServerUrl}/tournament/${tournamentId}/matches`);
+    return this.http.get<Match[]>(`${this.apiServerUrl}/matches/tournament/${tournamentId}`);
   }
 }

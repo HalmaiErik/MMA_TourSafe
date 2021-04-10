@@ -17,7 +17,7 @@ export class TournamentmatchesComponent implements OnInit {
   bubbleFighters: Fighter[] = [];
   idTournament: number;
   invitationLink: string;
-  tournament: Tournament;
+  tournament: Tournament; 
   private frontURL = environment.frontBaseURL;
 
   constructor(private tournamentService: TournamentService, private route: ActivatedRoute) { }
@@ -36,6 +36,7 @@ export class TournamentmatchesComponent implements OnInit {
   }
 
   public onOrganizeMatches(): void {
+    let matchesToInsert: Match[] = [];
     for (let i = 0; i < this.bubbleFighters.length - 1; i++) {
       for (let j = i + 1; j < this.bubbleFighters.length; j++) {
         if (this.bubbleFighters[i].weightClass == this.bubbleFighters[j].weightClass) {
@@ -43,16 +44,15 @@ export class TournamentmatchesComponent implements OnInit {
           insertMatch.tournament = this.tournament;
           insertMatch.fighter1 = this.bubbleFighters[i];
           insertMatch.fighter2 = this.bubbleFighters[j];
-          console.log(insertMatch);
-          this.tournamentService.addMatch(insertMatch).subscribe(
-            (resp: Match) => {
-              console.log(resp);
-            }
-          );
+          matchesToInsert.push(insertMatch);
         }
       }
     }
-    this.ngOnInit();
+    this.tournamentService.addMatches(matchesToInsert, this.idTournament).subscribe(
+      (resp: Match[]) => {
+        this.getMatches();
+      }
+    )
   }
 
   public getTournament(): void {

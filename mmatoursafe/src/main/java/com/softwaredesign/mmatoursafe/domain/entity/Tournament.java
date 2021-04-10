@@ -22,4 +22,6 @@ public class Tournament {
     private List<Match> matches;
     private java.sql.Date startDate;
     private java.sql.Date endDate;
+    @Enumerated(EnumType.STRING)
+    private Schedule schedule;
 }

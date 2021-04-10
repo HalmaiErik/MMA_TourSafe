@@ -13,6 +13,7 @@ export class CovidtestComponent implements OnInit {
   idFighter: number;
   test: CovidTest = new CovidTest();
   result: number;
+  success: boolean;
 
   constructor(private testService: CovidtestService, private route: ActivatedRoute,
     private fb: FormBuilder) { }
@@ -40,7 +41,7 @@ export class CovidtestComponent implements OnInit {
     this.testService.addTestForFighter(this.test, this.idFighter).subscribe(
       (resp: CovidTest) => {
         console.log(resp);
-        alert("Succesful registration");
+        this.success = true;
       }
     )
     

@@ -18,4 +18,5 @@ public class TournamentDTO {
     private List<MatchDTO> matches;
     private String startDate;
     private String endDate;
+    private String schedule;
 }

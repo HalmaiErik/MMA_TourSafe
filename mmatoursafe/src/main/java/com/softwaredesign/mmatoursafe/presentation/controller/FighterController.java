@@ -1,46 +1,34 @@
 package com.softwaredesign.mmatoursafe.presentation.controller;
 
-import com.softwaredesign.mmatoursafe.application.mapper.FighterMapper;
 import com.softwaredesign.mmatoursafe.application.service.FighterService;
 import com.softwaredesign.mmatoursafe.presentation.dto.FighterDTO;
-import com.softwaredesign.mmatoursafe.domain.entity.Fighter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("tournament")
+@RequestMapping("/api/fighters")
 public class FighterController {
     private final FighterService fighterService;
-    private final FighterMapper mapper;
 
     @Autowired
-    public FighterController(FighterService fighterService, FighterMapper mapper) {
+    public FighterController(FighterService fighterService) {
         this.fighterService = fighterService;
-        this.mapper = mapper;
     }
 
-    @PostMapping("/{id}/invitation")
+    @PostMapping("/tournament/{id}")
     public FighterDTO addFighter(@RequestBody FighterDTO fighterDTO, @PathVariable Long id) {
-        Fighter fighter = fighterService.addFighter(mapper.convertToEntity(fighterDTO));
-        return mapper.convertToDTO(fighter);
+        return fighterService.addFighter(fighterDTO);
     }
 
-    @GetMapping("{id}/negativefighters")
+    @GetMapping("/negative/tournament/{id}")
     public List<FighterDTO> getTournamentNegativeFighters(@PathVariable Long id) {
-        List<Fighter> fighters = fighterService.findNegativeFightersByTournamentId(id);
-        return fighters.stream()
-                .map(mapper::convertToDTO)
-                .collect(Collectors.toList());
+        return fighterService.findNegativeFightersByTournamentId(id);
     }
 
-    @GetMapping("{id}/positivefighters")
+    @GetMapping("/positive/tournament/{id}")
     public List<FighterDTO> getTournamentPositiveFighters(@PathVariable Long id) {
-        List<Fighter> fighters = fighterService.findPositiveFightersByTournamentId(id);
-        return fighters.stream()
-                .map(mapper::convertToDTO)
-                .collect(Collectors.toList());
+        return fighterService.findPositiveFightersByTournamentId(id);
     }
 }

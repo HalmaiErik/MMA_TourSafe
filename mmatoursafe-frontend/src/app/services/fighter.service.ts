@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { CovidTest } from '../model/covidtest';
 import { Fighter } from '../model/fighter';
 
 @Injectable({
@@ -15,6 +14,6 @@ export class FighterService {
 
   public addFighter(fighter: Fighter, tournamentId: number): Observable<Fighter> {
     fighter.idTournament = tournamentId;
-    return this.http.post<Fighter>(`${this.apiServerUrl}/tournament/${tournamentId}/invitation`, fighter);
+    return this.http.post<Fighter>(`${this.apiServerUrl}/fighters/tournament/${tournamentId}`, fighter);
   }
 }

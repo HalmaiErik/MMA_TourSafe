@@ -1,49 +1,85 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
     <a class="navbar-brand" style="color:white;">{{tournament?.name}}</a>
 
-    <div class="container">
-        <div class="pull-right">
-          <p class="d-inline pull-right" style="color:white">Invitation link: {{invitationLink}}</p>
-        </div>
-    </div>
+    <span class="navbar-text" style="color:white">Invitation link: {{invitationLink}} </span>
 </nav>
 
-<div class="container" id="main-container">
-  <p>Quarantine: </p>
-  <div class="row">
-    <div *ngFor="let fighter of quarantineFighters" class="col-xs-5 pr-2">
-      <div class="card item-wr">
-        {{fighter.name}}
+<div *ngIf="quarantineFighters?.length != 0" class="container">
+  <div class="col-12 col-sm-12 col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4>Quarantine:</h4>
       </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Class</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let fighter of quarantineFighters">
+            <th scope="row">{{fighter.name}}</th>
+            <td>{{fighter.age}}</td>
+            <td>{{fighter.weightClass}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
 
-<div class="container" id="main-container">
-  <p>Bubble: </p>
-  <div class="row">
-    <div *ngFor="let fighter of bubbleFighters" class="col-xs-5 pr-2">
-      <div class="card item-wr">
-        {{fighter.name}}
+<div *ngIf="bubbleFighters?.length != 0" class="container">
+  <div class="col-12 col-sm-12 col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4>Bubble:</h4>
       </div>
-      <div class="card item-wr">
-        {{fighter.weightClass}}
-      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Class</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let fighter of bubbleFighters">
+            <th scope="row">{{fighter.name}}</th>
+            <td>{{fighter.age}}</td>
+            <td>{{fighter.weightClass}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
 
-<div class="container" id="main-container">
-  <p>Matches: </p>
-  <button (click)="onOrganizeMatches()">Organize Matches</button>
-  <div class="row">
-    <div *ngFor="let match of matches" class="col-xs-5 pr-2">
-      <div class="card item-wr">
-        {{match?.fighter1.name}} vs {{match?.fighter2.name}}
+
+<div class="container">
+  <div class="col-12 col-sm-12 col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4>Matches:</h4>
       </div>
-      <div class="card item-wr">
-        {{match.dateTime}}
-      </div>
+      <button class="btn btn-secondary btn-large float-right" (click)="onOrganizeMatches()">Organize Matches</button>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Match</th>
+            <th scope="col">Date</th>
+            <th scope="col">Class</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let match of matches">
+            <th scope="row">{{match.fighter1.name}} vs {{match.fighter2.name}}</th>
+            <td>{{match.dateTime}}</td>
+            <td>{{match.fighter1.weightClass}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

@@ -13,6 +13,7 @@ export class CovidtestService {
   constructor(private http: HttpClient) { }
 
   public addTestForFighter(test: CovidTest, fighterId: number): Observable<CovidTest> {
-    return this.http.post<CovidTest>(`${this.apiServerUrl}/fighter/${fighterId}/covidtest/`, test)
+    test.idFighter = fighterId;
+    return this.http.post<CovidTest>(`${this.apiServerUrl}/covidtest/fighter/${fighterId}`, test)
   }
 }
