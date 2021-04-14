@@ -2,7 +2,7 @@
 assignment-1-HalmaiErik created by GitHub Classroom
 
 Video presentation: 
-https://www.youtube.com/watch?v=vme0ys8nJqI
+https://www.youtube.com/watch?v=TWg36Qc0sGc
 
 1. Clone the project to your computer
 2. Import the project in IntelliJ (or your IDE)
