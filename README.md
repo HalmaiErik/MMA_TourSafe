@@ -1,6 +1,3 @@
-# assignment-1-HalmaiErik
-assignment-1-HalmaiErik created by GitHub Classroom
-
 Video presentation: 
 https://www.youtube.com/watch?v=TWg36Qc0sGc
 
